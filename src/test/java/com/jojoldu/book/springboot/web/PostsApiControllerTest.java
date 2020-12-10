@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
+//import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -48,18 +49,21 @@ public class PostsApiControllerTest {
 
     @Before
     public void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(context)
+        mvc = MockMvcBuilders
+                .webAppContextSetup(context)
                 .apply(springSecurity())
                 .build();
     }
+
 
     @After
     public void tearDown() throws Exception {
         postsRepository.deleteAll();
     }
 
-    @Test
+
     @WithMockUser(roles = "USER")
+    @Test
     public void Posts_등록된다() throws Exception {
         //given
         String title = "title";
@@ -73,11 +77,11 @@ public class PostsApiControllerTest {
         String url = "http://localhost:" + port + "/api/v1/posts";
 
         //when
-        //ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        // ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
 
         //then
-        //assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        //assertThat(responseEntity.getBody()).isGreaterThan(0L);
+        // assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        // assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         //when
         mvc.perform(post(url)
@@ -114,11 +118,11 @@ public class PostsApiControllerTest {
         HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
         //when
-        //ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+        // ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 
         //then
-        //assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        //assertThat(responseEntity.getBody()).isGreaterThan(0L);
+        // assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        // assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         //when
         mvc.perform(put(url)

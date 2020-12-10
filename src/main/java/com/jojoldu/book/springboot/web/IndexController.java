@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-
     private final HttpSession httpSession;
 
     @GetMapping("/")
@@ -27,8 +26,7 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
 
         if(user != null) {
-            System.out.println(":::::::::::" + user.getName());
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("userNameJ", user.getName());
         }
 
         return "index";

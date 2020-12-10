@@ -1,6 +1,5 @@
 package com.jojoldu.book.springboot.domain.posts;
 
-import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +50,7 @@ public class PostsRepositoryTest {
     @Test
     public void BaseTimeEntity_등록() {
         //given
-        LocalDateTime now = LocalDateTime.of(2020, 3, 17, 0, 0, 0);
+        LocalDateTime now = LocalDateTime.of(2020, 12, 7, 0, 0, 0);
         postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
